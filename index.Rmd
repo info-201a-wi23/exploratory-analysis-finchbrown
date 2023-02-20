@@ -9,11 +9,11 @@ Give your project a concise, interesting title that summarizes the entirety of y
 
 ### Authors
 
-Names of your team members
+Finch Brown, Yaphet Paulos, Mohamed Farah, Hanna Loyuk
 
 ### Date
 
-Winter 2022
+February 20, 2023
 
 ### Abstract
 
