@@ -58,6 +58,29 @@ eis_survey_options <- unique_eis %>%
 
 eis_survey_options <- data.frame(eis_survey_options)
 
+# pulling data from this question: Overall, how much of a difference do you think you can have in making your neighborhood a better place to live?
+
+making_a_difference <- data.frame(unique(respondent_info_df$Q08..Overall..how.much.of.a.difference.do.you.think.you.can.have.in.making.your.neighborhood.a.better.place.to.live.))
+
+colnames(making_a_difference) <- c("Overall, how much of a difference do you think you can have in making your neighborhood a better place to live?", "Occurances")
+
+rm(making_a_difference_survey_options)
+
+making_a_difference <- respondent_info_df %>% 
+  group_by(Q08..Overall..how.much.of.a.difference.do.you.think.you.can.have.in.making.your.neighborhood.a.better.place.to.live.) %>% 
+  summarize(count=n())
+
+# how accessible do people find election info?
+
+accessibility <- data.frame(unique(respondent_info_df$Q11..How.easy.is.it.to.find.information.about.elections.and.candidates.in.your.preferred.language.))
+
+accessibility <- respondent_info_df %>% 
+  group_by(Q11..How.easy.is.it.to.find.information.about.elections.and.candidates.in.your.preferred.language.) %>% 
+  summarize(count=n())
+
+colnames(accessibility) <- c("How easy is it to find information about elections and candidates in your preferred language?", "Occurrances")
+
+
 
 
 
