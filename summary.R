@@ -8,8 +8,9 @@ election_information_sources <- respondent_info_df %>%
     select(16:29)
 
 # simplifying column names
-colnames(election_information_sources) <- c("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13")
+colnames(election_information_sources) <- c("If you wanted to find information about elections, issues, and candidates, which of the following would you most likely use?", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13")
   
+colnames(participation_history) <- c("Please tell us if you have done any of the following activities in the past 2 years.", "2", "3", "4", "5", "6", "7", "8", "9")
 
 # pulling unique answers from each column 
 
@@ -32,10 +33,36 @@ participation_history <- respondent_info_df %>%
   
 # finding unique answers to how easy people have found access to information
 
-compiled_eis <- data.frame(a = unlist(election_information_sources, use.names = FALSE))
+compiled_ph <- data.frame(a = unlist(participation_history, use.names = FALSE))
 
-unique_participation <- 
+unique_ph <- unique(compiled_ph)
 
-# what is the distribution of ease of access as described above
+unique_ph <- compiled_ph %>% 
+  group_by(a) %>% 
+  summarize(count=n())
+
+rm(unique_participation)
+
+# clarifying column names
+
+colnames(unique_ph) <- c("Please tell us if you have done any of the following activities in the past 2 years.", "occurances")
+colnames(unique_eis) <- c("If you wanted to find information about elections, issues, and candidates, which of the following would you most likely use?", "occurances")
+colnames(compiled_eis) <- c("If you wanted to find information about elections, issues, and candidates, which of the following would you most likely use?")
+colnames(compiled_ph) <- c("Please tell us if you have done any of the following activities in the past 2 years.")
+
+# making a variable of answers that seem to have been provided as options in the survey
+
+eis_survey_options <- unique_eis %>% 
+  filter(occurances >= 20, answers != "") %>% 
+  pull(answers)
+
+eis_survey_options <- data.frame(eis_survey_options)
+
+
+
+
+
+  
+  
   
   
