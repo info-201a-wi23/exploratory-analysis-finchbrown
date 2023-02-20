@@ -9,7 +9,7 @@ unique_income_brackets <- respondent_info_df %>% count(Q24..What.was.your.total.
                                                       
 
 # Create the histogram
-ggplot(income_bracket_counts, aes(x = Q24..What.was.your.total.combined.household.income.in.2015.before.taxes., y = count)) +
+ggplot(unique_income_brackets, aes(x = Q24..What.was.your.total.combined.household.income.in.2015.before.taxes., y = count)) +
   geom_histogram(stat = "identity", fill = "blue", alpha = 0.8) +
   labs(title = "Histogram of Household Income in 2015",
        x = "Household Income in 2015",
