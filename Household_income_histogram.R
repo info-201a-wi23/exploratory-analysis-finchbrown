@@ -2,8 +2,6 @@ library(ggplot2)
 library(dplyr)
 library(stringr)
 
-respondent_info_df <- read.csv("Seattle_Votes_Survey_Data_from_5_224_immigrant_and_refugee_residents_of_Seattle_King_County.csv", stringsAsFactors = FALSE)
-
 respondent_info_df1 <- read.csv("Seattle_Votes_Survey_Data_from_5_224_immigrant_and_refugee_residents_of_Seattle_King_County.csv", header=T, na.strings=c(""," ","NA"))
 
 
@@ -15,5 +13,5 @@ ggplot(unique_income_brackets, aes(x = Q24..What.was.your.total.combined.househo
   geom_histogram(stat = "identity", alpha = 0.8) +
   labs(title = "Histogram of Household Income in 2015",
        x = "Household Income in 2015",
-       y = "Occurences") + scale_fill_brewer(palette = "Blues")
+       y = "Occurences") + scale_fill_brewer(palette = "Blues") 
 
