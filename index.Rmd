@@ -74,6 +74,8 @@ library("stringr")
 
 respondent_info_df1 <- read.csv("Seattle_Votes_Survey_Data_from_5_224_immigrant_and_refugee_residents_of_Seattle_King_County.csv", stringsAsFactors = FALSE)
 
+respondent_info_df1 <- read.csv("Seattle_Votes_Survey_Data_from_5_224_immigrant_and_refugee_residents_of_Seattle_King_County.csv", header=T, na.strings=c(""," ","NA"))
+
 # pulling all columns answering the question about where people might find information on elections
 election_information_sources <- respondent_info_df1 %>% 
     select(16:29)
