@@ -44,7 +44,7 @@ unique_ph <- compiled_ph %>%
 
 # clarifying column names
 
-colnames(unique_ph) <- c("Please tell us if you have done any of the following activities in the past 2 years.", "occurrences")
+colnames(unique_ph) <- c("activities", "occurrences")
 colnames(unique_eis) <- c("If you wanted to find information about elections, issues, and candidates, which of the following would you most likely use?", "occurrences")
 colnames(compiled_eis) <- c("If you wanted to find information about elections, issues, and candidates, which of the following would you most likely use?")
 colnames(compiled_ph) <- c("Please tell us if you have done any of the following activities in the past 2 years.")
@@ -55,7 +55,6 @@ colnames(eis_survey_options) <- c("information_sources")
 # making a variable of answers that seem to have been provided as options in the survey
 
 
-  colnames(eis_survey_options) <- c("information_sources", "occurrences")
 
 colnames(eis_survey_options) <- c("information_sources", "occurrences")
 
@@ -71,17 +70,7 @@ eis_survey_options <- compiled_eis %>%
   summarize(count=n())
 
 eis_survey_options <- eis_survey_options[-1,]
-  
-  eis_survey_options <- unique_eis %>% 
-    filter(occurrences >= 20)
-  
-  eis_survey_options <- data.frame(eis_survey_options)
 
-  eis_survey_options <- compiled_eis %>%
-    group_by(information_sources) %>%
-    summarize(count = n()) %>%
-    group_by(information_sources) %>%
-    summarize(count=n())
     
 
 # pulling data from this question: Overall, how much of a difference do you think you can have in making your neighborhood a better place to live?
@@ -146,9 +135,16 @@ ggplot(age_and_makediff) + geom_line(aes(x = age, y = corresponding_nums, color 
 age_and_participation <- respondent_info_df %>% 
     select(Q)
 
+top_participation <- unique_ph %>% 
+  filter(occurrences == max(occurrences, na.rm = TRUE)) %>% 
+  pull(activities)
 
+lowest_participation <- unique_ph %>% 
+  filter(occurrences == min(occurrences, na.rm = TRUE)) %>% 
+  pull(activities)
 
+unique_ph <- unique_ph[-1,]
 
-
+View(top_participation)
   
   
