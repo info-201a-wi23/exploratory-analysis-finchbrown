@@ -38,7 +38,7 @@ compiled_ph <- data.frame(a = unlist(participation_history, use.names = FALSE))
 unique_ph <- unique(compiled_ph)
 
 unique_ph <- compiled_ph %>% 
-  group_by(a) %>% 
+  group_by(compiled_ph$`Please tell us if you have done any of the following activities in the past 2 years.`) %>% 
   summarize(count=n())
 
 
