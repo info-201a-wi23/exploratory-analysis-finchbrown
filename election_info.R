@@ -44,35 +44,40 @@ unique_ph <- compiled_ph %>%
 
 # clarifying column names
 
-colnames(unique_ph) <- c("Please tell us if you have done any of the following activities in the past 2 years.", "occurances")
-colnames(unique_eis) <- c("If you wanted to find information about elections, issues, and candidates, which of the following would you most likely use?", "occurances")
+colnames(unique_ph) <- c("activities", "occurrences")
+colnames(unique_eis) <- c("If you wanted to find information about elections, issues, and candidates, which of the following would you most likely use?", "occurrences")
 colnames(compiled_eis) <- c("If you wanted to find information about elections, issues, and candidates, which of the following would you most likely use?")
 colnames(compiled_ph) <- c("Please tell us if you have done any of the following activities in the past 2 years.")
 colnames(eis_survey_options) <- c("information_sources")
 
+
+# EIS SURVEY OPTIONS
 # making a variable of answers that seem to have been provided as options in the survey
 
-colnames(eis_survey_options) <- c("information_sources")
+
+
+colnames(eis_survey_options) <- c("information_sources", "occurrences")
 
 eis_survey_options <- unique_eis %>% 
-  filter(occurances >= 20)
+  filter(occurrences >= 20)
 
 eis_survey_options <- data.frame(eis_survey_options)
 
 eis_survey_options <- compiled_eis %>% 
-<<<<<<< HEAD
   group_by(information_sources) %>%
   summarize(count = n())
-=======
   group_by(information_sources) %>% 
   summarize(count=n())
->>>>>>> 2adda392432975bdb0347f603291fbd3ed8b67be
+
+eis_survey_options <- eis_survey_options[-1,]
+
+    
 
 # pulling data from this question: Overall, how much of a difference do you think you can have in making your neighborhood a better place to live?
 
 making_a_difference <- data.frame(unique(respondent_info_df$Q08..Overall..how.much.of.a.difference.do.you.think.you.can.have.in.making.your.neighborhood.a.better.place.to.live.))
 
-colnames(making_a_difference) <- c("Overall, how much of a difference do you think you can have in making your neighborhood a better place to live?", "Occurances")
+colnames(making_a_difference) <- c("Overall, how much of a difference do you think you can have in making your neighborhood a better place to live?", "Occurrences")
 
 rm(making_a_difference_survey_options)
 
@@ -88,7 +93,7 @@ accessibility <- respondent_info_df %>%
   group_by(Q11..How.easy.is.it.to.find.information.about.elections.and.candidates.in.your.preferred.language.) %>% 
   summarize(count=n())
 
-colnames(accessibility) <- c("How easy is it to find information about elections and candidates in your preferred language?", "Occurrances")
+colnames(accessibility) <- c("How easy is it to find information about elections and candidates in your preferred language?", "Occurrences")
 
 
 
@@ -108,10 +113,38 @@ age_and_makediff <- age_and_makediff %>%
 
 # converting make_a_difference into quantitative data
 
-ggplot(age_and_makediff) + geom_point(aes(x = age, y = ))
+age_and_makediff <- age_and_makediff %>% 
+  mutate(corresponding_nums = difference)
+
+age_and_makediff$corresponding_nums <- str_replace_all(age_and_makediff$corresponding_nums, "I can make no difference at all", "0")
+
+age_and_makediff$corresponding_nums <- str_replace_all(age_and_makediff$corresponding_nums, "I can make a small difference", "1")
+
+age_and_makediff$corresponding_nums <- str_replace_all(age_and_makediff$corresponding_nums, "I can make a moderate difference", "2")
+
+age_and_makediff$corresponding_nums <- str_replace_all(age_and_makediff$corresponding_nums, "I can make a big difference", "3")
+
+# plotting
+
+ggplot(age_and_makediff) + geom_line(aes(x = age, y = corresponding_nums, color = age))
 
 
   
-  
+# okay, let's try this again but with participation and age
+
+age_and_participation <- respondent_info_df %>% 
+    select(Q)
+
+top_participation <- unique_ph %>% 
+  filter(occurrences == max(occurrences, na.rm = TRUE)) %>% 
+  pull(activities)
+
+lowest_participation <- unique_ph %>% 
+  filter(occurrences == min(occurrences, na.rm = TRUE)) %>% 
+  pull(activities)
+
+unique_ph <- unique_ph[-1,]
+
+View(top_participation)
   
   

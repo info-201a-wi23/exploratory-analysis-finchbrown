@@ -23,11 +23,13 @@ Immigration, voting, Seattle, accessibility
 
 ### Introduction  
 
-Our project is focused on the experiences of immigrants and refugess who currently live in the city of Seattle. Our goal for this project is to gain a deeper and better understanding of the demographics of Seattle, including the regions they are coming from, the areas they are settling in, mapping out income disparities, and looking at political affiliations. Additionally, this project aims to uncover the impact of historical events overseas on the political and material statuses of immigrants in Seattle. With this project, we can map out barriers to voter registration and voting among immigrants and refugees living in Seattle. Our project hopes to identify possible ways to encourage greater engagement in local government among immigrant and refugee communities. Throughout this project, we hope to understand how past historical events overseas can impact the current political affiliations and statuses of immigrants now. The project has the potential to positively impact immigrant and refugee communities by providing them with the tools and resources they need to be more politically active and engaged in the decisions that affect their lives.
+Our project is focused on the experiences of immigrants and refugees who currently live in the city of Seattle. Our goal for this project is to gain a deeper and better understanding of the demographics of Seattle, including the regions they are coming from, the areas they are settling in, mapping out income disparities, and looking at political affiliations. Additionally, this project aims to uncover the impact of historical events overseas on the political and material statuses of immigrants in Seattle. With this project, we can map out barriers to voter registration and voting among immigrants and refugees living in Seattle. Our project hopes to identify possible ways to encourage greater engagement in local government among immigrant and refugee communities. Throughout this project, we hope to understand how past historical events overseas can impact the current political affiliations and statuses of immigrants now. The project has the potential to positively impact immigrant and refugee communities by identifying some tools and resources that might be most helpful in making local politics more accessible to them.
 
 What do households look like (population wise)?
 What zip codes are associated with a higher income among immigrants?
 Are the neighborhoods that have a higher population of immigrants more low, middle, or higher income households?
+Do immigrants' types of participation in local politics differ between age groups?
+How much impact do immgirants in Seattle feel like they have in their neighborhoods? 
 
 ### Related Work  
 
@@ -58,6 +60,26 @@ Some limitations or challenges that we may need to address is how this data was 
 
 Write a summary paragraph of findings that includes the 5 values calculated from your summary information R script
 
+```{r}
+top_participation <- unique_ph %>% 
+  filter(occurrences == max(occurrences, na.rm = TRUE)) %>% 
+  pull(activities)
+
+top_ptn_number <- unique_ph %>% 
+  filter(occurrences == max(occurrences, na.rm = TRUE)) %>% 
+  pull(occurrences)
+
+lowest_participation <- unique_ph %>% 
+  filter(occurrences == min(occurrences, na.rm = TRUE)) %>% 
+  pull(activities)
+
+lowest_ptn_number <- unique_ph %>% 
+  filter(occurrences == min(occurrences, na.rm = TRUE)) %>% 
+  pull(occurrences)
+```
+
+
+Looking into the answers from the survey, we found that out of the options given in the survey of ways that a person might participate in their communities or local politics, the people selected `r top_participation` the most, at top_ptn_number occurrences. Respondents selected `r lowest_participation` the least, at lowest_ptn_number occurrences. 
 
 
 ### Table
