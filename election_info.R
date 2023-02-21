@@ -52,19 +52,19 @@ colnames(eis_survey_options) <- c("information_sources")
 
 # making a variable of answers that seem to have been provided as options in the survey
 
-colnames(eis_survey_options) <- c("information_sources")
-
-eis_survey_options <- unique_eis %>% 
-  filter(occurances >= 20)
-
-eis_survey_options <- data.frame(eis_survey_options)
-
-eis_survey_options <- compiled_eis %>% 
-  group_by(information_sources) %>%
-  summarize(count = n())
-  group_by(information_sources) %>% 
-  summarize(count=n())
+  colnames(eis_survey_options) <- c("information_sources", "occurences")
   
+  eis_survey_options <- unique_eis %>% 
+    filter(occurances >= 20)
+  
+  eis_survey_options <- data.frame(eis_survey_options)
+
+  eis_survey_options <- compiled_eis %>%
+    group_by(information_sources) %>%
+    summarize(count = n()) %>%
+    group_by(information_sources) %>%
+    summarize(count=n())
+    
 # pulling data from this question: Overall, how much of a difference do you think you can have in making your neighborhood a better place to live?
 
 making_a_difference <- data.frame(unique(respondent_info_df$Q08..Overall..how.much.of.a.difference.do.you.think.you.can.have.in.making.your.neighborhood.a.better.place.to.live.))
