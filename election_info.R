@@ -3,6 +3,8 @@ library(tidyverse)
 library(stringr)
 
 
+respondent_info_df1 <- read.csv("documents/winter2023/info201/exploratory-analysis-finchbrown/Seattle_Votes_Survey_Data_from_5_224_immigrant_and_refugee_residents_of_Seattle_King_County.csv", stringsAsFactors = FALSE)
+
 # pulling all columns answering the question about where people might find information on elections
 election_information_sources <- respondent_info_df %>% 
     select(16:29)
@@ -53,7 +55,6 @@ colnames(eis_survey_options) <- c("information_sources")
 
 # EIS SURVEY OPTIONS
 # making a variable of answers that seem to have been provided as options in the survey
-
 
 
 colnames(eis_survey_options) <- c("information_sources", "occurrences")
