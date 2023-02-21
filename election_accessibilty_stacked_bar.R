@@ -8,4 +8,5 @@ library(dplyr)
 
 ggplot(eis_survey_options, aes(x="", y= occurences, fill= information_sources)) +
   geom_bar(stat="identity", width=1) +
-  coord_polar("y", start=0)
+  coord_polar("y", start=0) +
+  labs(title = "Information Sources of Elections")
