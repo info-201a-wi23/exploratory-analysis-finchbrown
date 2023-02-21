@@ -39,7 +39,7 @@ Ghaem-Maghami S;Kuuire. “Immigrants Serving in Local Government: A Systematic 
 
 ### The Dataset
 
-We found this dataset on the Seattle Open Data Portal. The City of Seattle collected this data as a part of the Seattle Votes campaign, by surveying thousands of immigrants and refugees to learn more about things that hold then back from being able to vote. Seattle Votes is a project run by the Office of Immigrant and Refugee Affairs (OIRA). This dataset has 5,229 observations and 59 features, and it is important to note that the data was not obtained through a random sample.
+We found this dataset on the [Seattle Open Data Portal](https://data.seattle.gov/Community/Seattle-Votes-Survey-Data-from-5-224-immigrant-and/y5cf-gy2p). The City of Seattle collected this data as a part of the Seattle Votes campaign, by surveying thousands of immigrants and refugees to learn more about things that hold then back from being able to vote. Seattle Votes is a project run by the Office of Immigrant and Refugee Affairs (OIRA). This dataset has 5,229 observations and 59 features, and it is important to note that the data was not obtained through a random sample.
 
 This dataset in particular demands many ethical questions and questions of power. Since the data was collected by the City of Seattle, it is likely that the survey collectors were citizens who were personally registered to vote. Even if they weren't survey responders would have been likely to assume that they were. This brings up concerns that people may have felt unsafe filling out this survey, and either chose not to participate or chose to disclose sensitive information, since a person with citizenship (and ties to the local government) holds power over a resident without it.
 
