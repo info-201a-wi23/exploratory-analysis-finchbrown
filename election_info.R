@@ -80,8 +80,6 @@ making_a_difference <- data.frame(unique(respondent_info_df$Q08..Overall..how.mu
 
 colnames(making_a_difference) <- c("Overall, how much of a difference do you think you can have in making your neighborhood a better place to live?", "Occurrences")
 
-rm(making_a_difference_survey_options)
-
 making_a_difference <- respondent_info_df %>% 
   group_by(Q08..Overall..how.much.of.a.difference.do.you.think.you.can.have.in.making.your.neighborhood.a.better.place.to.live.) %>% 
   summarize(count=n())

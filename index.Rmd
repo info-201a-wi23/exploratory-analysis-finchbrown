@@ -65,16 +65,12 @@ Write a summary paragraph of findings that includes the 5 values calculated from
 library("tidyverse")
 library("stringr")
 
-respondent_info_df1 <- read.csv("documents/winter2023/info201/exploratory-analysis-finchbrown/Seattle_Votes_Survey_Data_from_5_224_immigrant_and_refugee_residents_of_Seattle_King_County.csv", stringsAsFactors = FALSE)
+respondent_info_df1 <- read.csv("Seattle_Votes_Survey_Data_from_5_224_immigrant_and_refugee_residents_of_Seattle_King_County.csv", stringsAsFactors = FALSE)
 
 # pulling all columns answering the question about where people might find information on elections
-election_information_sources <- respondent_info_df %>% 
+election_information_sources <- respondent_info_df1 %>% 
     select(16:29)
 
-# simplifying column names
-colnames(election_information_sources) <- c("If you wanted to find information about elections, issues, and candidates, which of the following would you most likely use?", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13")
-  
-colnames(participation_history) <- c("Please tell us if you have done any of the following activities in the past 2 years.", "2", "3", "4", "5", "6", "7", "8", "9")
 
 # pulling unique answers from each column 
 
@@ -92,7 +88,7 @@ unique_eis <- compiled_eis %>%
 
 # pulling all columns related to how people have participated in the past
 
-participation_history <- respondent_info_df %>% 
+participation_history <- respondent_info_df1 %>% 
   select(31:39)
   
 # finding unique answers to how easy people have found access to information
@@ -105,20 +101,15 @@ unique_ph <- compiled_ph %>%
   group_by(a) %>% 
   summarize(count=n())
 
+# simplifying column names
+colnames(election_information_sources) <- c("If you wanted to find information about elections, issues, and candidates, which of the following would you most likely use?", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13")
+  
+colnames(participation_history) <- c("Please tell us if you have done any of the following activities in the past 2 years.", "2", "3", "4", "5", "6", "7", "8", "9")
 
-# clarifying column names
-
-colnames(unique_ph) <- c("activities", "occurrences")
-colnames(unique_eis) <- c("If you wanted to find information about elections, issues, and candidates, which of the following would you most likely use?", "occurrences")
-colnames(compiled_eis) <- c("If you wanted to find information about elections, issues, and candidates, which of the following would you most likely use?")
-colnames(compiled_ph) <- c("Please tell us if you have done any of the following activities in the past 2 years.")
-colnames(eis_survey_options) <- c("information_sources")
 
 # EIS SURVEY OPTIONS
 # making a variable of answers that seem to have been provided as options in the survey
 
-
-colnames(eis_survey_options) <- c("information_sources", "occurrences")
 
 eis_survey_options <- unique_eis %>% 
   filter(occurrences >= 20)
@@ -132,6 +123,36 @@ eis_survey_options <- compiled_eis %>%
   summarize(count=n())
 
 eis_survey_options <- eis_survey_options[-1,]
+
+colnames(eis_survey_options) <- c("information_sources", "occurrences")
+
+# clarifying column names
+
+colnames(unique_ph) <- c("activities", "occurrences")
+colnames(unique_eis) <- c("If you wanted to find information about elections, issues, and candidates, which of the following would you most likely use?", "occurrences")
+colnames(compiled_eis) <- c("If you wanted to find information about elections, issues, and candidates, which of the following would you most likely use?")
+colnames(compiled_ph) <- c("Please tell us if you have done any of the following activities in the past 2 years.")
+colnames(eis_survey_options) <- c("information_sources")
+
+# pulling data from this question: Overall, how much of a difference do you think you can have in making your neighborhood a better place to live?
+
+making_a_difference <- data.frame(unique(respondent_info_df$Q08..Overall..how.much.of.a.difference.do.you.think.you.can.have.in.making.your.neighborhood.a.better.place.to.live.))
+
+colnames(making_a_difference) <- c("Overall, how much of a difference do you think you can have in making your neighborhood a better place to live?", "Occurrences")
+
+making_a_difference <- respondent_info_df1 %>% 
+  group_by(Q08..Overall..how.much.of.a.difference.do.you.think.you.can.have.in.making.your.neighborhood.a.better.place.to.live.) %>% 
+  summarize(count=n())
+
+# how accessible do people find election info?
+
+accessibility <- data.frame(unique(respondent_info_df1$Q11..How.easy.is.it.to.find.information.about.elections.and.candidates.in.your.preferred.language.))
+
+accessibility <- respondent_info_df1 %>% 
+  group_by(Q11..How.easy.is.it.to.find.information.about.elections.and.candidates.in.your.preferred.language.) %>% 
+  summarize(count=n())
+
+colnames(accessibility) <- c("How easy is it to find information about elections and candidates in your preferred language?", "Occurrences")
 
 top_participation <- unique_ph %>% 
   filter(occurrences == max(occurrences, na.rm = TRUE)) %>% 
@@ -169,7 +190,7 @@ Describe why you chose this chart and what information it reveals
 Here's an example of how to run an R script inside an RMarkdown file:
 
 ``````{r, echo = FALSE, code = readLines("chart1_example.R")}
-```
+``````
 
 ### Chart 2
 
