@@ -84,7 +84,6 @@ colnames(accessibility) <- c("How easy is it to find information about elections
 
 
 
-
   
   
   
