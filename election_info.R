@@ -62,19 +62,18 @@ compiled_eis$a <- tolower(compiled_eis$a)
 
 colnames(compiled_eis) <- c("information_sources")
 
-
-
-  
-# finding unique answers to how easy people have found access to information
+# making a compilation of participation 
 
 compiled_ph <- data.frame(a = unlist(participation_history, use.names = FALSE))
 
 colnames(compiled_ph) <- c("activities")
 
+# finding unique answers to how easy people have found access to information
+
 unique_ph <- unique(compiled_ph)
 
 unique_ph <- compiled_ph %>% 
-  group_by(compiled_ph$`Please tell us if you have done any of the following activities in the past 2 years.`) %>% 
+  group_by(compiled_ph$activities) %>% 
   summarize(count=n())
 
 colnames(unique_ph) <- c("activities", "occurrences")
@@ -102,7 +101,9 @@ accessibility <- respondent_info_df1 %>%
 
 colnames(accessibility) <- c("How easy is it to find information about elections and candidates in your preferred language?", "Occurrences")
 
+# Looking into the answers from the survey, we found that out of the options given in the survey of ways that a person might participate in their communities or local politics, the people selected `r top_participation` the most, at `r `top_ptn_number` occurrences. Respondents selected `r lowest_participation` the least, at `r `lowest_ptn_number` occurrences. 
 
+top_participation <- 
 
 
   
