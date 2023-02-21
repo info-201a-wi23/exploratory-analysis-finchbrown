@@ -52,7 +52,7 @@ colnames(eis_survey_options) <- c("information_sources")
 
 # making a variable of answers that seem to have been provided as options in the survey
 
-colnames(eis_survey_options) <- c("information_sources")
+colnames(eis_survey_options) <- c("information_sources", "occurances")
 
 eis_survey_options <- unique_eis %>% 
   filter(occurances >= 20)
@@ -122,6 +122,9 @@ ggplot(age_and_makediff) + geom_line(aes(x = age, y = corresponding_nums, color 
 
 
   
-  
+# okay, let's try this again but with participation and age
+
+age_and_participation <- respondent_info_df %>% 
+    select()
   
   
