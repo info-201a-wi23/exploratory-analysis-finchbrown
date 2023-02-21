@@ -33,6 +33,8 @@ unique_eis <- compiled_eis %>%
 
 colnames(unique_eis) <- c("activities", "occurrences")
 
+unique_eis <- na.omit(unique_eis)
+
 # EIS SURVEY OPTIONS
 # making a variable of answers that seem to have been provided as options in the survey
 
@@ -64,9 +66,7 @@ colnames(compiled_eis) <- c("information_sources")
 
 # making a compilation of participation 
 
-compiled_ph <- data.frame(a = unlist(participation_history, use.names = FALSE))
-
-colnames(compiled_ph) <- c("activities")
+compiled_ph <- data.frame(activities = unlist(participation_history, use.names = FALSE))
 
 # finding unique answers to how easy people have found access to information
 
@@ -77,6 +77,8 @@ unique_ph <- compiled_ph %>%
   summarize(count=n())
 
 colnames(unique_ph) <- c("activities", "occurrences")
+
+unique_ph <- na.omit(unique_ph)
     
 
 # pulling data from this question: Overall, how much of a difference do you think you can have in making your neighborhood a better place to live?
@@ -103,8 +105,25 @@ colnames(accessibility) <- c("How easy is it to find information about elections
 
 # Looking into the answers from the survey, we found that out of the options given in the survey of ways that a person might participate in their communities or local politics, the people selected `r top_participation` the most, at `r `top_ptn_number` occurrences. Respondents selected `r lowest_participation` the least, at `r `lowest_ptn_number` occurrences. 
 
-top_participation <- 
+top_participation <- unique_ph %>% 
+  filter(occurrences == max(occurrences)) %>% 
+  pull(activities)
 
+top_ptn_number <- unique_ph %>% 
+  filter(occurrences == max(occurrences)) %>% 
+  pull(occurrences)
+
+lowest_participation <- unique_ph %>% 
+  filter(occurrences == min(occurrences)) %>% 
+  pull(activities)
+
+lowest_ptn_number <- unique_ph %>% 
+  filter(occurrences == min(occurrences)) %>% 
+  pull(occurrences)
+
+
+
+View(top_participation)
 
   
   
