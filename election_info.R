@@ -52,6 +52,10 @@ compiled_eis$a <- tolower(compiled_eis$a)
 
 unique_eis <- unique(compiled_eis)
 
+colnames(unique_eis) <- c("If you wanted to find information about elections, issues, and candidates, which of the following would you most likely use?", "occurrences")
+
+
+
 # adding column with number of each unique answer
 
 unique_eis <- compiled_eis %>% 
@@ -61,7 +65,7 @@ unique_eis <- compiled_eis %>%
 # clarifying column names
 
 colnames(unique_ph) <- c("activities", "occurrences")
-colnames(unique_eis) <- c("If you wanted to find information about elections, issues, and candidates, which of the following would you most likely use?", "occurrences")
+
 colnames(compiled_eis) <- c("If you wanted to find information about elections, issues, and candidates, which of the following would you most likely use?")
 colnames(compiled_ph) <- c("Please tell us if you have done any of the following activities in the past 2 years.")
 
