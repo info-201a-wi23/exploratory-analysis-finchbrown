@@ -2,5 +2,6 @@ library(tidyverse)
 library(stringr)
 library(dplyr)
 
-ggplot(data, aes(fill = eis_survey_options, y = count(), x = unique_eis)) + 
-  geom_bar(position="stacked", stat="identity")
+ggplot(eis_survey_options, aes( x = information_sources, y = occurences)) + 
+  geom_bar(position="stack", stat="identity") +
+  labs(title = "Stacked Bar Graph of News Sources" )
