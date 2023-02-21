@@ -60,6 +60,26 @@ Some limitations or challenges that we may need to address is how this data was 
 
 Write a summary paragraph of findings that includes the 5 values calculated from your summary information R script
 
+```{r}
+top_participation <- unique_ph %>% 
+  filter(occurrences == max(occurrences, na.rm = TRUE)) %>% 
+  pull(activities)
+
+top_ptn_number <- unique_ph %>% 
+  filter(occurrences == max(occurrences, na.rm = TRUE)) %>% 
+  pull(occurrences)
+
+lowest_participation <- unique_ph %>% 
+  filter(occurrences == min(occurrences, na.rm = TRUE)) %>% 
+  pull(activities)
+
+lowest_ptn_number <- unique_ph %>% 
+  filter(occurrences == min(occurrences, na.rm = TRUE)) %>% 
+  pull(occurrences)
+```
+
+
+Looking into the answers from the survey, we found that out of the options given in the survey of ways that a person might participate in their communities or local politics, the people selected `r top_participation` the most, at top_ptn_number occurrences. Respondents selected `r lowest_participation` the least, at lowest_ptn_number occurrences. 
 
 
 ### Table
