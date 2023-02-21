@@ -205,7 +205,6 @@ Here's an example of how to run an R script inside an RMarkdown file:
 =======
 ``````{r, echo = FALSE, code = readLines("chart1_example.R")}
 ``````
->>>>>>> d91ca5b61cc227fa9b86ceebe2f802e6e6541907
 
 ### Chart 2
 
