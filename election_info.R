@@ -3,6 +3,10 @@ library(tidyverse)
 library(stringr)
 
 
+respondent_info_df1 <- read.csv("documents/winter2023/info201/exploratory-analysis-finchbrown/Seattle_Votes_Survey_Data_from_5_224_immigrant_and_refugee_residents_of_Seattle_King_County.csv", stringsAsFactors = FALSE)
+
+respondent_info_df1 <- read.csv("Seattle_Votes_Survey_Data_from_5_224_immigrant_and_refugee_residents_of_Seattle_King_County.csv", header=T, na.strings=c("", " ", "NA"))
+
 # pulling all columns answering the question about where people might find information on elections
 election_information_sources <- respondent_info_df %>% 
     select(16:29)
@@ -55,7 +59,6 @@ colnames(eis_survey_options) <- c("information_sources")
 # making a variable of answers that seem to have been provided as options in the survey
 
 
-
 colnames(eis_survey_options) <- c("information_sources", "occurrences")
 
 eis_survey_options <- unique_eis %>% 
@@ -78,8 +81,6 @@ eis_survey_options <- eis_survey_options[-1,]
 making_a_difference <- data.frame(unique(respondent_info_df$Q08..Overall..how.much.of.a.difference.do.you.think.you.can.have.in.making.your.neighborhood.a.better.place.to.live.))
 
 colnames(making_a_difference) <- c("Overall, how much of a difference do you think you can have in making your neighborhood a better place to live?", "Occurrences")
-
-rm(making_a_difference_survey_options)
 
 making_a_difference <- respondent_info_df %>% 
   group_by(Q08..Overall..how.much.of.a.difference.do.you.think.you.can.have.in.making.your.neighborhood.a.better.place.to.live.) %>% 
