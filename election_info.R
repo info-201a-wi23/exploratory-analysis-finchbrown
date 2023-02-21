@@ -54,9 +54,9 @@ colnames(eis_survey_options) <- c("information_sources")
 # EIS SURVEY OPTIONS
 # making a variable of answers that seem to have been provided as options in the survey
 
-<<<<<<< HEAD
+
   colnames(eis_survey_options) <- c("information_sources", "occurences")
-=======
+
 colnames(eis_survey_options) <- c("information_sources", "occurances")
 
 eis_survey_options <- unique_eis %>% 
@@ -69,12 +69,9 @@ eis_survey_options <- compiled_eis %>%
   summarize(count = n())
   group_by(information_sources) %>% 
   summarize(count=n())
->>>>>>> a8f1fb9907745894d66047d769ea52e58b7997ad
-  
-<<<<<<< HEAD
+
 eis_survey_options <- eis_survey_options[-1,]
   
-=======
   eis_survey_options <- unique_eis %>% 
     filter(occurances >= 20)
   
