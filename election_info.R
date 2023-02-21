@@ -21,6 +21,18 @@ colnames(election_information_sources) <- c("If you wanted to find information a
 
 colnames(participation_history) <- c("Please tell us if you have done any of the following activities in the past 2 years.", "2", "3", "4", "5", "6", "7", "8", "9")
 
+# creating unique_eis
+
+unique_eis <- unique(compiled_eis)
+
+# adding column with number of each unique answer
+
+unique_eis <- compiled_eis %>% 
+  group_by(information_sources) %>% 
+  summarize(count=n())
+
+colnames(unique_eis) <- c("activities", "occurrences")
+
 # EIS SURVEY OPTIONS
 # making a variable of answers that seem to have been provided as options in the survey
 
@@ -29,20 +41,18 @@ eis_survey_options <- unique_eis %>%
 
 eis_survey_options <- data.frame(eis_survey_options)
 
-colnames(eis_survey_options) <- c("information_sources")
+colnames(eis_survey_options) <- c("information_sources", "occurrences")
+
+colnames(compiled_eis) <- c("information_sources")
 
 eis_survey_options <- compiled_eis %>% 
   group_by(information_sources) %>%
   summarize(count = n())
-group_by(information_sources) %>% 
-  summarize(count=n())
+
 
 eis_survey_options <- eis_survey_options[-1,]
 
 colnames(eis_survey_options) <- c("information_sources", "occurrences")
-
-
-
 
 # pulling unique answers from each column 
 
@@ -50,29 +60,16 @@ compiled_eis <- data.frame(a = unlist(election_information_sources, use.names = 
 
 compiled_eis$a <- tolower(compiled_eis$a)
 
-unique_eis <- unique(compiled_eis)
-
-colnames(unique_eis) <- c("If you wanted to find information about elections, issues, and candidates, which of the following would you most likely use?", "occurrences")
+colnames(compiled_eis) <- c("information_sources")
 
 
-
-# adding column with number of each unique answer
-
-unique_eis <- compiled_eis %>% 
-  group_by(a) %>% 
-  summarize(count=n())
-
-# clarifying column names
-
-colnames(unique_ph) <- c("activities", "occurrences")
-
-colnames(compiled_eis) <- c("If you wanted to find information about elections, issues, and candidates, which of the following would you most likely use?")
-colnames(compiled_ph) <- c("Please tell us if you have done any of the following activities in the past 2 years.")
 
   
 # finding unique answers to how easy people have found access to information
 
 compiled_ph <- data.frame(a = unlist(participation_history, use.names = FALSE))
+
+colnames(compiled_ph) <- c("activities")
 
 unique_ph <- unique(compiled_ph)
 
@@ -80,19 +77,20 @@ unique_ph <- compiled_ph %>%
   group_by(compiled_ph$`Please tell us if you have done any of the following activities in the past 2 years.`) %>% 
   summarize(count=n())
 
-
-
+colnames(unique_ph) <- c("activities", "occurrences")
     
 
 # pulling data from this question: Overall, how much of a difference do you think you can have in making your neighborhood a better place to live?
 
 making_a_difference <- data.frame(unique(respondent_info_df1$Q08..Overall..how.much.of.a.difference.do.you.think.you.can.have.in.making.your.neighborhood.a.better.place.to.live.))
 
-colnames(making_a_difference) <- c("Overall, how much of a difference do you think you can have in making your neighborhood a better place to live?", "Occurrences")
-
 making_a_difference <- respondent_info_df1 %>% 
   group_by(Q08..Overall..how.much.of.a.difference.do.you.think.you.can.have.in.making.your.neighborhood.a.better.place.to.live.) %>% 
   summarize(count=n())
+
+colnames(making_a_difference) <- c("Overall, how much of a difference do you think you can have in making your neighborhood a better place to live?", "Occurrences")
+
+
 
 # how accessible do people find election info?
 
@@ -106,54 +104,6 @@ colnames(accessibility) <- c("How easy is it to find information about elections
 
 
 
-# calculating ages
 
-age_and_makediff <- respondent_info_df1 %>% 
-  select(Q02..In.what.year.were.you.born., Q08..Overall..how.much.of.a.difference.do.you.think.you.can.have.in.making.your.neighborhood.a.better.place.to.live.)
-
-# making column names simpler
-
-colnames(age_and_makediff) <- c("birth_year", "difference")
-
-# changing birth year to age
-
-age_and_makediff <- age_and_makediff %>% 
-  mutate(age = 2023 - birth_year)
-
-# converting make_a_difference into quantitative data
-
-age_and_makediff <- age_and_makediff %>% 
-  mutate(corresponding_nums = difference)
-
-age_and_makediff$corresponding_nums <- str_replace_all(age_and_makediff$corresponding_nums, "I can make no difference at all", "0")
-
-age_and_makediff$corresponding_nums <- str_replace_all(age_and_makediff$corresponding_nums, "I can make a small difference", "1")
-
-age_and_makediff$corresponding_nums <- str_replace_all(age_and_makediff$corresponding_nums, "I can make a moderate difference", "2")
-
-age_and_makediff$corresponding_nums <- str_replace_all(age_and_makediff$corresponding_nums, "I can make a big difference", "3")
-
-# plotting
-
-ggplot(age_and_makediff) + geom_line(aes(x = age, y = corresponding_nums, color = age))
-
-
-  
-# okay, let's try this again but with participation and age
-
-age_and_participation <- respondent_info_df1 %>% 
-    select(Q)
-
-top_participation <- unique_ph %>% 
-  filter(occurrences == max(occurrences, na.rm = TRUE)) %>% 
-  pull(activities)
-
-lowest_participation <- unique_ph %>% 
-  filter(occurrences == min(occurrences, na.rm = TRUE)) %>% 
-  pull(activities)
-
-unique_ph <- unique_ph[-1,]
-
-View(top_participation)
   
   
