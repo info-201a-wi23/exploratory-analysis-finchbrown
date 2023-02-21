@@ -105,7 +105,20 @@ age_and_makediff <- age_and_makediff %>%
 
 # converting make_a_difference into quantitative data
 
-ggplot(age_and_makediff) + geom_point(aes(x = age, y = ))
+age_and_makediff <- age_and_makediff %>% 
+  mutate(corresponding_nums = difference)
+
+age_and_makediff$corresponding_nums <- str_replace_all(age_and_makediff$corresponding_nums, "I can make no difference at all", "0")
+
+age_and_makediff$corresponding_nums <- str_replace_all(age_and_makediff$corresponding_nums, "I can make a small difference", "1")
+
+age_and_makediff$corresponding_nums <- str_replace_all(age_and_makediff$corresponding_nums, "I can make a moderate difference", "2")
+
+age_and_makediff$corresponding_nums <- str_replace_all(age_and_makediff$corresponding_nums, "I can make a big difference", "3")
+
+# plotting
+
+ggplot(age_and_makediff) + geom_line(aes(x = age, y = corresponding_nums, color = age))
 
 
   
