@@ -44,8 +44,8 @@ unique_ph <- compiled_ph %>%
 
 # clarifying column names
 
-colnames(unique_ph) <- c("Please tell us if you have done any of the following activities in the past 2 years.", "occurances")
-colnames(unique_eis) <- c("If you wanted to find information about elections, issues, and candidates, which of the following would you most likely use?", "occurances")
+colnames(unique_ph) <- c("Please tell us if you have done any of the following activities in the past 2 years.", "occurrences")
+colnames(unique_eis) <- c("If you wanted to find information about elections, issues, and candidates, which of the following would you most likely use?", "occurrences")
 colnames(compiled_eis) <- c("If you wanted to find information about elections, issues, and candidates, which of the following would you most likely use?")
 colnames(compiled_ph) <- c("Please tell us if you have done any of the following activities in the past 2 years.")
 colnames(eis_survey_options) <- c("information_sources")
@@ -55,12 +55,12 @@ colnames(eis_survey_options) <- c("information_sources")
 # making a variable of answers that seem to have been provided as options in the survey
 
 
-  colnames(eis_survey_options) <- c("information_sources", "occurences")
+  colnames(eis_survey_options) <- c("information_sources", "occurrences")
 
-colnames(eis_survey_options) <- c("information_sources", "occurances")
+colnames(eis_survey_options) <- c("information_sources", "occurrences")
 
 eis_survey_options <- unique_eis %>% 
-  filter(occurances >= 20)
+  filter(occurrences >= 20)
 
 eis_survey_options <- data.frame(eis_survey_options)
 
@@ -73,7 +73,7 @@ eis_survey_options <- compiled_eis %>%
 eis_survey_options <- eis_survey_options[-1,]
   
   eis_survey_options <- unique_eis %>% 
-    filter(occurances >= 20)
+    filter(occurrences >= 20)
   
   eis_survey_options <- data.frame(eis_survey_options)
 
@@ -83,12 +83,12 @@ eis_survey_options <- eis_survey_options[-1,]
     group_by(information_sources) %>%
     summarize(count=n())
     
->>>>>>> 3e77ded602e838bbe507cd2da120d20e8c44192a
+
 # pulling data from this question: Overall, how much of a difference do you think you can have in making your neighborhood a better place to live?
 
 making_a_difference <- data.frame(unique(respondent_info_df$Q08..Overall..how.much.of.a.difference.do.you.think.you.can.have.in.making.your.neighborhood.a.better.place.to.live.))
 
-colnames(making_a_difference) <- c("Overall, how much of a difference do you think you can have in making your neighborhood a better place to live?", "Occurances")
+colnames(making_a_difference) <- c("Overall, how much of a difference do you think you can have in making your neighborhood a better place to live?", "Occurrences")
 
 rm(making_a_difference_survey_options)
 
@@ -104,7 +104,7 @@ accessibility <- respondent_info_df %>%
   group_by(Q11..How.easy.is.it.to.find.information.about.elections.and.candidates.in.your.preferred.language.) %>% 
   summarize(count=n())
 
-colnames(accessibility) <- c("How easy is it to find information about elections and candidates in your preferred language?", "Occurrances")
+colnames(accessibility) <- c("How easy is it to find information about elections and candidates in your preferred language?", "Occurrences")
 
 
 
@@ -144,21 +144,11 @@ ggplot(age_and_makediff) + geom_line(aes(x = age, y = corresponding_nums, color 
 # okay, let's try this again but with participation and age
 
 age_and_participation <- respondent_info_df %>% 
-    select()
+    select(Q)
 
-# EIS survey options bar chart
 
-ggplot(eis_survey_options) +
-  geom_bar(aes(y = ))
 
-ggplot(data_diamonds) +
-  geom_bar(aes(x = cut, fill = clarity), position = 'fill') +
-  
-  ggtitle("Stacked Bar Plot (same height)") +
-  xlab("CUT") +
-  ylab("COUNT") +
-  theme_bw() +
-  theme(axis.text.x = element_text(face = 'bold', size = 10),
-        axis.text.y = element_text(face = 'bold', size = 10))
+
+
   
   
