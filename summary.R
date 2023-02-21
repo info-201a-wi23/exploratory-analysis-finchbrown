@@ -41,7 +41,6 @@ unique_ph <- compiled_ph %>%
   group_by(a) %>% 
   summarize(count=n())
 
-rm(unique_participation)
 
 # clarifying column names
 
@@ -52,11 +51,16 @@ colnames(compiled_ph) <- c("Please tell us if you have done any of the following
 
 # making a variable of answers that seem to have been provided as options in the survey
 
+colnames(eis_survey_options) <- c("information_sources")
+
 eis_survey_options <- unique_eis %>% 
-  filter(occurances >= 20, answers != "") %>% 
-  pull(answers)
+  filter(occurances >= 20)
 
 eis_survey_options <- data.frame(eis_survey_options)
+
+eis_survey_options <- compiled_eis %>% 
+  group_by(information_sources) %>% 
+  summarize(count=n())
 
 # pulling data from this question: Overall, how much of a difference do you think you can have in making your neighborhood a better place to live?
 
