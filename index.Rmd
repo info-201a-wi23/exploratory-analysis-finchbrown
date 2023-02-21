@@ -3,9 +3,7 @@ title: "Exploratory Analysis"
 output: html_document
 ---
 
-## Project title
-
-Give your project a concise, interesting title that summarizes the entirety of your project
+## Seattle Immigrants and Voting
 
 ### Authors
 
@@ -17,42 +15,50 @@ February 20, 2023
 
 ### Abstract
 
-No more than three sentences that summarize your project. Focus on the very most important aspects. For example: (1) "Our main question is .... This question is important because .... To address the question, we will ...." (2) "We are concerned with ..., because .... To address this concern, we plan to ...." (3) "Consider that .... This is important because .... Accordingly, we plan to ...."
+Immigrants and refugees go through many struggles just to get into the United States. With a dataset from Seattle Votes, this project can help us understand what barriers immigrants and refugees encounter that prevent them from voting in the US.
 
 ### Keywords
 
-3-5 keywords that summarize your project.
-(e.g., "Keywords: human physiology; bicycle exercise; Gen Z; times-series data")
+Immigration, voting, Seattle, accessibility
 
 ### Introduction  
 
-Briefly introduce your project.  Include 3-5 research questions. What motivates the questions? Why are they important? (at least 200 words)
+Our project is focused on the experiences of immigrants and refugess who currently live in the city of Seattle. Our goal for this project is to gain a deeper and better understanding of the demographics of Seattle, including the regions they are coming from, the areas they are settling in, mapping out income disparities, and looking at political affiliations. Additionally, this project aims to uncover the impact of historical events overseas on the political and material statuses of immigrants in Seattle. With this project, we can map out barriers to voter registration and voting among immigrants and refugees living in Seattle. Our project hopes to identify possible ways to encourage greater engagement in local government among immigrant and refugee communities. Throughout this project, we hope to understand how past historical events overseas can impact the current political affiliations and statuses of immigrants now. The project has the potential to positively impact immigrant and refugee communities by providing them with the tools and resources they need to be more politically active and engaged in the decisions that affect their lives.
+
+What do households look like (population wise)?
+What zip codes are associated with a higher income among immigrants?
+Are the neighborhoods that have a higher population of immigrants more low, middle, or higher income households?
 
 ### Related Work  
 
-Describe your topic and related work in this space. You must include 3 citations to related work (URLs to similar work, high quality articles from the popular press, research papers, etc. ) Please use a standard citation style of your choice. (at least 200 words)
+Historically, immigrants in the 1890s (coincidentally from central, eastern, and southern Europe) were the focus of many political efforts. They were absorbed into political action early on. Political parties earlier on were in much more need for the immigrant vote however, the demographics of immigrants in recent years have changed. Many have credited the exclusion of immigrants in modern election cycles to a change in strategy. While in the past, politicians tried to appeal to as wide of a base as possible, “today elections feature ‘narrowcasting’- remarkably through efforts to find narrow but potentially decisive slivers of the adult population” (Schier). Research has been done in this space, specifically on how demographic changes in heterogeneous areas, will still only reflect the original demographic of the area. And when candidates with an immigrant background have found success in local government, a large factor is how well integrated immigrants are into their “host societies” (Ghaem-Maghami). Hence, it is vital for immigrants to engage with their local politics, because it brings opportunities later on for possible candidates from their communities, to represent them. Getting refugees involved in local politics will also help divert resources to their own communities through policy. In our dataset, we have documentation of the participants’ income, language barriers, housing information, and other vital information. These have been shown to be large problems in refugee communities (Organization, Bonyan).
+
+Organization, Bonyan. “The Most Problems That Refugees Facing in Their New Countris.” Bonyan Organization, 21 Nov. 2022, https://bonyan.ngo/what-challenges-do-refugees-face-when-finding-a-new-home/#:~:text=What%20Are%20The%20Main%20Problems,Raising%20Children%2C%20Prejudice%20and%20Racism. 
+Schier, Steven E. “From Melting Pot to Centrifuge: Immigrants and American Politics.” Brookings, Brookings, 28 July 2016, https://www.brookings.edu/articles/from-melting-pot-to-centrifuge-immigrants-and-american-politics/. VZ;, 
+Ghaem-Maghami S;Kuuire. “Immigrants Serving in Local Government: A Systematic Review and Meta-Analysis of Factors Affecting Candidacy and Election.” Urban Affairs Review (Thousand Oaks, Calif.), U.S. National Library of Medicine, 2022, https://pubmed.ncbi.nlm.nih.gov/36345479/.
 
 ### The Dataset
 
-Where did you find the data? Please include a link to the data source  
-Who collected the data?  
-How was the data collected or generated?  
-Why was the data collected?  
-How many observations (rows) are in your data?  
-How many features (columns) are in the data?  
-What, if any, ethical questions or questions of power do you need to consider when working with this data?  
-What are possible limitations or problems with this data?   (at least 200 words)
+We found this dataset on the Seattle Open Data Portal. The City of Seattle collected this data as a part of the Seattle Votes campaign, by surveying thousands of immigrants and refugees to learn more about things that hold then back from being able to vote. Seattle Votes is a project run by the Office of Immigrant and Refugee Affairs (OIRA). This dataset has 5,229 observations and 59 features, and it is important to note that the data was not obtained through a random sample.
+
+This dataset in particular demands many ethical questions and questions of power. Since the data was collected by the City of Seattle, it is likely that the survey collectors were citizens who were personally registered to vote. Even if they weren't survey responders would have been likely to assume that they were. This brings up concerns that people may have felt unsafe filling out this survey, and either chose not to participate or chose to disclose sensitive information, since a person with citizenship (and ties to the local government) holds power over a resident without it.
+
+Along with these limitations, there is also the concern of how this collection of information could be used against any of the survey responders. While there is no explicit identifying information in the survey, there are a few questions that could be used together to try to identify a person. Since this dataset is publicly available, it is worth investigating how the data has been protected from being used against anyone.
 
 ### Implications
 
-Assuming you answer your research questions, briefly describe the expected or possible implications for technologists, designers, and policymakers. (at least 150 words)
+Our project proposal has potential implications for technologists, designers, and policymakers. For technologists, this data and analysis can be a small step forward into something bigger. This project can provide important information when it comes to immigrants in the Seattle area and the resources they might benefit from to better establish their voices in the greater community. Using this Seattle-based dataset technologists can help identify patterns and possibly compare them to different cities to get a better understanding of how the information was gathered, and how we can help immigrants overcome obstacles in more circumstances than just in Seattle. For designers, this informational project can organize necessary data that could map out and show where voting trends occur common demographics in certain areas, and reasons why they wanted to participate in Seattle votes. For policymakers, the implication is that they could identify what policy changes could most effectively open up opportunities for immigrants and refugees to voice their ideas and needs. The dataset could be a stepping stone that could lead to better laws being passed, in the face of systematic racism and other systems of oppression that marginalize immigrants relative to their community members.
+
 
 ### Limitations & Challenges
-What challenges or limitations might you need to address with your project idea more broadly? Briefly discuss. (at least 150 words)
+
+Some limitations or challenges that we may need to address is how this data was gathered. As we know, it may be hard to get an accurate report of the immigrant demographics because of individuals awaiting their papers/citizenships. We may not get an accurate representation of the data for fear of deportation or other governmental consequences. This could be reflected in a skewed pool of respondents, or in reluctancy from respondents to disclose certain information. Some other possible limitations are that because our data comes from only the city of Seattle, depending on what questions we want to ask and if we want to look at the state of Washington, it may not be a perfect reflection of the overall state of Washington, or otherwise not be more broadly applicable. Seattle and other south-end cities may have more immigrant populations because they are commonly recognized as more urban areas and a place where lower income families tend to reside based on the history of gentrification and systemic poverty. If we want to frame our questions for the whole state of Washington, we are missing a lot of data and a possibility of a different immigrant group demographic that may tend to commonly reside in a different city rather than Seattle.
 
 ### Summary Information
 
 Write a summary paragraph of findings that includes the 5 values calculated from your summary information R script
+
+
 
 ### Table
 
