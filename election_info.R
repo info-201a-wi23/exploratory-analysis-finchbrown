@@ -50,6 +50,8 @@ colnames(compiled_eis) <- c("If you wanted to find information about elections, 
 colnames(compiled_ph) <- c("Please tell us if you have done any of the following activities in the past 2 years.")
 colnames(eis_survey_options) <- c("information_sources")
 
+
+# EIS SURVEY OPTIONS
 # making a variable of answers that seem to have been provided as options in the survey
 
 colnames(eis_survey_options) <- c("information_sources", "occurances")
@@ -64,6 +66,8 @@ eis_survey_options <- compiled_eis %>%
   summarize(count = n())
   group_by(information_sources) %>% 
   summarize(count=n())
+  
+eis_survey_options <- eis_survey_options[-1,]
   
 # pulling data from this question: Overall, how much of a difference do you think you can have in making your neighborhood a better place to live?
 
@@ -126,5 +130,20 @@ ggplot(age_and_makediff) + geom_line(aes(x = age, y = corresponding_nums, color 
 
 age_and_participation <- respondent_info_df %>% 
     select()
+
+# EIS survey options bar chart
+
+ggplot(eis_survey_options) +
+  geom_bar(aes(y = ))
+
+ggplot(data_diamonds) +
+  geom_bar(aes(x = cut, fill = clarity), position = 'fill') +
+  
+  ggtitle("Stacked Bar Plot (same height)") +
+  xlab("CUT") +
+  ylab("COUNT") +
+  theme_bw() +
+  theme(axis.text.x = element_text(face = 'bold', size = 10),
+        axis.text.y = element_text(face = 'bold', size = 10))
   
   
