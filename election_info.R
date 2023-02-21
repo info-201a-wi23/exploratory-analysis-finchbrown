@@ -60,11 +60,13 @@ eis_survey_options <- unique_eis %>%
 eis_survey_options <- data.frame(eis_survey_options)
 
 eis_survey_options <- compiled_eis %>% 
+<<<<<<< HEAD
   group_by(information_sources) %>%
   summarize(count = n())
-
+=======
   group_by(information_sources) %>% 
   summarize(count=n())
+>>>>>>> 2adda392432975bdb0347f603291fbd3ed8b67be
 
 # pulling data from this question: Overall, how much of a difference do you think you can have in making your neighborhood a better place to live?
 
@@ -90,6 +92,23 @@ colnames(accessibility) <- c("How easy is it to find information about elections
 
 
 
+# calculating ages
+
+age_and_makediff <- respondent_info_df %>% 
+  select(Q02..In.what.year.were.you.born., Q08..Overall..how.much.of.a.difference.do.you.think.you.can.have.in.making.your.neighborhood.a.better.place.to.live.)
+
+# making column names simpler
+
+colnames(age_and_makediff) <- c("birth_year", "difference")
+
+# changing birth year to age
+
+age_and_makediff <- age_and_makediff %>% 
+  mutate(age = 2023 - birth_year)
+
+# converting make_a_difference into quantitative data
+
+ggplot(age_and_makediff) + geom_point(aes(x = age, y = ))
 
 
   
