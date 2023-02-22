@@ -162,23 +162,21 @@ Describe why you included the table and what information it reveals
 
 ### Chart 1
 
-Include a chart
+Shows household income from our dataset.
 
-Describe why you chose this chart and what information it reveals
+{r, echo = FALSE, code = readLines("Household_income_histogram.R")}
 
-Here's an example of how to run an R script inside an RMarkdown file:
-
-``````{r, echo = FALSE, code = readLines("chart1_example.R")}
-```
 
 ### Chart 2
 
-Include a chart
+Shows bar graph answering one of our questions from our dataset.
 
-Describe why you chose this chart and what information it reveals
+{r, echo = FALSE, code = readLines("Bar Graph Chart 3.R")}
+
 
 ### Chart 3
 
-Include a chart
+shows a pie chart that answers a question from out dataset.
 
-Describe why you chose this chart and what information it reveals
+{r, echo = FALSE, code = readLines("election_accessibilty_pie_chart.R")}
+
