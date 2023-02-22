@@ -3,6 +3,7 @@ library(tidyverse)
 library(stringr)
 
 
+
 respondent_info_df1 <- read.csv("Seattle_Votes_Survey_Data_from_5_224_immigrant_and_refugee_residents_of_Seattle_King_County.csv", stringsAsFactors = FALSE)
 
 respondent_info_df1 <- read.csv("Seattle_Votes_Survey_Data_from_5_224_immigrant_and_refugee_residents_of_Seattle_King_County.csv", header=T, na.strings=c("", " ", "NA"))
@@ -20,6 +21,14 @@ participation_history <- respondent_info_df1 %>%
 colnames(election_information_sources) <- c("If you wanted to find information about elections, issues, and candidates, which of the following would you most likely use?", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13")
 
 colnames(participation_history) <- c("Please tell us if you have done any of the following activities in the past 2 years.", "2", "3", "4", "5", "6", "7", "8", "9")
+
+# pulling unique answers from each column 
+
+compiled_eis <- data.frame(a = unlist(election_information_sources, use.names = FALSE))
+
+compiled_eis$a <- tolower(compiled_eis$a)
+
+colnames(compiled_eis) <- c("information_sources")
 
 # creating unique_eis
 
@@ -55,14 +64,6 @@ eis_survey_options <- compiled_eis %>%
 eis_survey_options <- eis_survey_options[-1,]
 
 colnames(eis_survey_options) <- c("information_sources", "occurrences")
-
-# pulling unique answers from each column 
-
-compiled_eis <- data.frame(a = unlist(election_information_sources, use.names = FALSE))
-
-compiled_eis$a <- tolower(compiled_eis$a)
-
-colnames(compiled_eis) <- c("information_sources")
 
 # making a compilation of participation 
 

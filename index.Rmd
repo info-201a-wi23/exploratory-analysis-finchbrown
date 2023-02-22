@@ -42,13 +42,6 @@ Ghaem-Maghami S;Kuuire. “Immigrants Serving in Local Government: A Systematic 
 ### The Dataset
 
 We found this dataset on the [Seattle Open Data Portal](https://data.seattle.gov/Community/Seattle-Votes-Survey-Data-from-5-224-immigrant-and/y5cf-gy2p). The City of Seattle collected this data as a part of the Seattle Votes campaign, by surveying thousands of immigrants and refugees to learn more about things that hold then back from being able to vote. Seattle Votes is a project run by the Office of Immigrant and Refugee Affairs (OIRA). This dataset has 5,229 observations and 59 features, and it is important to note that the data was not obtained through a random sample.
-```{r}
-library(dplyr)
-```
-
-
-```{r}
-```
 
 This dataset in particular demands many ethical questions and questions of power. Since the data was collected by the City of Seattle, it is likely that the survey collectors were citizens who were personally registered to vote. Even if they weren't survey responders would have been likely to assume that they were. This brings up concerns that people may have felt unsafe filling out this survey, and either chose not to participate or chose to disclose sensitive information, since a person with citizenship (and ties to the local government) holds power over a resident without it.
 
@@ -65,14 +58,12 @@ Some limitations or challenges that we may need to address is how this data was 
 
 ### Summary Information
 
-Write a summary paragraph of findings that includes the 5 values calculated from your summary information R script
-
-```{r, echo = FALSE, code = readLines("election_info.R")}
+```{r, echo = FALSE, results = FALSE, messages = FALSE, warnings = FALSE, code = readLines("election_info.R")}
 
 ```
 
 
-Looking into the answers from the survey, we found that out of the options given in the survey of ways that a person might participate in their communities or local politics, the people selected `r top_participation` the most, at `r `top_ptn_number` occurrences. Respondents selected `r lowest_participation` the least, at `r `lowest_ptn_number` occurrences. 
+Looking into the answers from the survey, we found that out of the options given in the survey of ways that a person might participate in their communities or local politics, the people selected "`r top_participation`" the most, at `r top_ptn_number` occurrences. Respondents selected "`r lowest_participation`" the least, at `r lowest_ptn_number` occurrences. 
 
 
 ### Table
@@ -94,7 +85,7 @@ Here's an example of how to run an R script inside an RMarkdown file:
 
 ```
 =======
-``````{r, echo = FALSE, code = readLines("chart1_example.R")}
+``````{r, echo = FALSE, code = readLines("Bar Graph Chart 3.R")}
 ``````
 
 ### Chart 2
