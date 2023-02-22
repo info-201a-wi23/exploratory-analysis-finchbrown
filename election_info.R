@@ -79,7 +79,7 @@ unique_ph <- compiled_ph %>%
 
 colnames(unique_ph) <- c("activities", "occurrences")
 
-unique_ph <- na.omit(unique_ph)
+unique_ph_na.rm <- na.omit(unique_ph)
     
 
 # pulling data from this question: Overall, how much of a difference do you think you can have in making your neighborhood a better place to live?
@@ -106,25 +106,28 @@ colnames(accessibility) <- c("How easy is it to find information about elections
 
 # Looking into the answers from the survey, we found that out of the options given in the survey of ways that a person might participate in their communities or local politics, the people selected `r top_participation` the most, at `r `top_ptn_number` occurrences. Respondents selected `r lowest_participation` the least, at `r `lowest_ptn_number` occurrences. 
 
-top_participation <- unique_ph %>% 
+top_participation <- unique_ph_na.rm %>% 
   filter(occurrences == max(occurrences)) %>% 
   pull(activities)
 
-top_ptn_number <- unique_ph %>% 
+top_ptn_number <- unique_ph_na.rm %>% 
   filter(occurrences == max(occurrences)) %>% 
   pull(occurrences)
 
-lowest_participation <- unique_ph %>% 
+lowest_participation <- unique_ph_na.rm %>% 
   filter(occurrences == min(occurrences)) %>% 
   pull(activities)
 
-lowest_ptn_number <- unique_ph %>% 
+lowest_ptn_number <- unique_ph_na.rm %>% 
   filter(occurrences == min(occurrences)) %>% 
   pull(occurrences)
 
+# add percentages 
 
+top_ptn_percent 
 
-View(top_participation)
+# add more summary statistics 
+
 
   
   
